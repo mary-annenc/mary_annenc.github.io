@@ -45,26 +45,6 @@
 				.trigger('resize');
 		*/
 
-		// Title Bar.
-			$(
-				'<div id="titleBar">' +
-					'<a href="#sidebar" class="toggle"></a>' +
-					'<span class="title">' + $('#logo').html() + '</span>' +
-				'</div>'
-			)
-				.appendTo($body);
-
-		// Sidebar
-			$('#sidebar')
-				.panel({
-					delay: 500,
-					hideOnClick: true,
-					hideOnSwipe: true,
-					resetScroll: true,
-					resetForms: true,
-					side: 'left',
-					target: $body,
-					visibleClass: 'sidebar-visible'
-				});
+		// Sidebar and Title Bar removed
 
 })(jQuery);
