@@ -86,17 +86,53 @@
 							</div>
 							<p>
 								<strong>Menstrual Cycle Training Calculator</strong><br/>
+								This project models the menstrual cycle and explores how hormonal fluctuations influence exercise performance and training strategies. Using Python, the tool calculates cycle phase based on user input and generates training recommendations and visualizations.
+								Female physiology changes across the menstrual cycle due to fluctuations in estrogen and progesterone. These hormonal changes can affect energy levels, strength, endurance, and recovery. This project demonstrates how computational tools can be used to model these variations and support more individualized training approaches.
 								
-								This project is a computational tool designed to model the menstrual cycle and explore how hormonal fluctuations may influence training strategies.
-								By imputing cycle length and current day, the calculator determines the users current phase (menstrual, follicular, ovulatory or luteal), and provides evidence-based training recommendations.
-								The project includes programmatically generated visualizations that dynamically update based on user input. These graphs represent hormonal trends and recommended training intensity across the cycle, 
-								with the user’s current day highlighted to show real-time positioning within the cycle.
-								<iframe 
-																  src="https://colab.research.google.com/drive/1JNS6OaCeNsOgNIIC4aKk1TKtklDc_0TO?usp=sharing"  
-																  width="100%" 
-																  height="600">
-																</iframe>
+			
 										</p>
+							<h3>How the Calculator Works</h3>
+
+<p>
+The calculator takes two inputs: cycle length and current cycle day. Based on this information, the program determines the current phase of the menstrual cycle (menstrual, follicular, ovulatory, or luteal) and provides a corresponding training recommendation.
+</p>
+							<h3>Python Implementation</h3>
+
+<pre><code>
+def get_cycle_phase(day, cycle_length):
+    if day <= 5:
+        return "Menstrual"
+    elif day <= 13:
+        return "Follicular"
+    elif day <= 16:
+        return "Ovulatory"
+    else:
+        return "Luteal"
+
+
+def training_recommendation(phase):
+    recommendations = {
+        "Menstrual": "Low intensity: rest, yoga, light activity",
+        "Follicular": "Increasing intensity: strength training, moderate cardio",
+        "Ovulatory": "High intensity: peak performance, HIIT, strength",
+        "Luteal": "Moderate intensity: reduce load, focus on recovery"
+    }
+    return recommendations[phase]
+
+
+# ---- USER INPUT ----
+cycle_length = int(input("Enter your cycle length (e.g., 28): "))
+day = int(input("Enter your current cycle day: "))
+
+# ---- LOGIC ----
+phase = get_cycle_phase(day, cycle_length)
+recommendation = training_recommendation(phase)
+
+# ---- OUTPUT ----
+print(f"\nCycle Day: {day}")
+print(f"Cycle Phase: {phase}")
+print(f"Training Recommendation: {recommendation}")
+</code></pre>
 						</article>
 
 					<!-- Post -->
