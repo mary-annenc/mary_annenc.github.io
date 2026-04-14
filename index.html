@@ -94,7 +94,44 @@
 							<h3>Code explanation</h3>
 
 <p>
-	<iframe src="https://www.kaggle.com/embed/maryannechukwunyem/menstrualcycletrainingcalculator?kernelSessionId=311153240" height="800" style="margin: 0 auto; width: 100%; max-width: 950px;" frameborder="0" scrolling="auto" title="MenstrualCycleTrainingCalculator"></iframe>
+	<pre><code>
+   import matplotlib.pyplot as plt
+import numpy as np
+
+# ---- USER INPUT ----
+cycle_length = int(input("Enter your cycle length (e.g., 28): "))
+current_day = int(input("Enter your current cycle day: "))
+
+days = np.arange(1, cycle_length + 1)
+
+# Normalize to 28-day reference
+scaled_days = (days / cycle_length) * 28
+
+# ---- ESTROGEN ----
+estrogen_rise = 0.08 * (scaled_days - 1)
+estrogen_peak1 = 3 * np.exp(-0.5 * ((scaled_days - 13) / 2.5)**2)
+estrogen_dip = -2 * np.exp(-0.5 * ((scaled_days - 16) / 1.5)**2)
+estrogen_peak2 = 1.5 * np.exp(-0.5 * ((scaled_days - 20) / 3)**2)
+
+estrogen = 1 + estrogen_rise + estrogen_peak1 + estrogen_dip + estrogen_peak2
+
+# ---- PROGESTERONE ----
+progesterone_rise = 1 / (1 + np.exp(-(scaled_days - 17)))
+progesterone_peak = 4 * np.exp(-0.5 * ((scaled_days - 21) / 3)**2)
+
+progesterone = 1 + progesterone_rise + progesterone_peak
+
+# ---- TRAINING INTENSITY (based on hormones) ----
+# High estrogen = higher performance
+# High progesterone = slightly reduced intensity
+
+intensity = (0.6 * estrogen) - (0.4 * progesterone)
+
+# Normalize intensity to a 1–10 scale
+intensity = 1 + 9 * (intensity - np.min(intensity)) / (np.max(intensity) - np.min(intensity))
+
+</code></pre>
+							
 The calculator takes two inputs: cycle length and current cycle day. These values determine the scale of the model and allow the program to adapt to individual differences in cycle duration. Estrogen and progesterone levels are modeled using combinations of mathematical functions. Estrogen is represented by a gradual rise leading to a peak around ovulation, followed by a decline and a smaller secondary increase during the luteal phase. 
 	Progesterone remains low early in the cycle and rises later, peaking in the luteal phase before declining. These curves are not exact clinical values but are designed to reflect general physiological trends observed in the menstrual cycle.
 	The model normalizes the cycle to a standard 28-day reference and then rescales it based on user input. This ensures that hormone patterns adjust proportionally for different cycle lengths. Training intensity is calculated as a function of hormone levels.
