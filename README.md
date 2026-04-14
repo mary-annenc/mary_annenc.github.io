@@ -13,7 +13,7 @@ The purpose of this project is to demonstrate how computational tools can be app
 - **HTML/CSS** -This was for structuring and presenting the project. 
 
 ## How to navigate the project 
-### Python Model
+**Python Model**
 1. Open the linked notebook  
 2. Modify the input values:
    - `cycle_length`
@@ -21,7 +21,7 @@ The purpose of this project is to demonstrate how computational tools can be app
 3. Run the code cells  
 4. View the updated graphs showing hormone levels and training intensity  
 
-### Scratch Simulation
+**Scratch Simulation**
 1. Open the embedded Scratch project  
 2. Enter a cycle day when prompted  
 3. View the resulting phase and training recommendation  
