@@ -16,8 +16,8 @@ The purpose of this project is to demonstrate how computational tools can be app
 **Python Model**
 1. Open the linked notebook  
 2. Modify the input values:
-   - `cycle_length`
-   - `current_day`  
+   - 'cycle_length'
+   - 'current_day'  
 3. Run the code cells  
 4. View the updated graphs showing hormone levels and training intensity  
 
